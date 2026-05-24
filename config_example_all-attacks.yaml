@@ -1,0 +1,43 @@
+exp_name: "date-number-title"
+interactive: False
+exp_type: Experiment.LINEAR
+
+attack_sets:
+  - name: "nothing"
+    attack_sequence: []
+  - name: "gcg"
+    attack_sequence:
+      - Attack.GCG
+  - name: "prefix"
+    attack_sequence:
+      - Attack.PREFIX
+  - name: "refusal"
+    attack_sequence:
+      - Attack.REFUSAL_SUPPRESSION
+  - name: "in-context-attack"
+    attack_sequence:
+      - Attack.ICA
+  - name: "ignore-previous"
+    attack_sequence:
+      - Attack.IGNORE_PREVIOUS
+  - name: "dev-mode"
+    attack_sequence:
+      - Attack.DEVELOPER_MODE
+  - name: "dan"
+    attack_sequence:
+      - Attack.DAN
+  - name: "wikipedia"
+    attack_sequence:
+      - Attack.WIKIPEDIA
+
+defense_sets:
+  - name: "vicuna-7b"
+    defense_sequence_before_llm: []
+    target_llm: LLM.VICUNA_7B
+    defense_sequence_after_llm: []
+
+evaluation_set:
+  name: "oss-jb-judge_jbb"
+  evaluator_sequence:
+    - Evaluator.OSS_JB_JUDGE_120B
+  dataset: Dataset.JBB_BEHAVIOURS

@@ -1,0 +1,5 @@
+# config for alpaca_eval utility evaluation vLLM API server setup
+
+default:
+  - api_key: "token-abc123"
+    base_url: "http://localhost:8000/v1"

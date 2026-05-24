@@ -1,0 +1,31 @@
+# This demonstrates configuration for a batch API experiment.
+# It is useful for running experiment on proprietary LLM APIs which support batch jobs.
+# Refer to exp/classes/batch_api_exp.py for more imple details and optional configs.
+exp_name: "date-number-title"
+interactive: False
+exp_type: Experiment.BATCH_API
+optional_configs:
+  experiment_repetitions: 5
+  run_attack_and_generate_batch: True # step 1: run attack until just before target LLM, generate batch file
+  submit_batch_file: False # in step 1, whether to submit & start batch job. If False, will just generate & upload to platform.
+  run_defense_after_llm: False # step 2: download batch output file, run defense after LLM, obtain final LLM outputs
+  run_evaluation: False # step 3: run evaluation on final LLM outputs, obtain attack results and metrics
+  model: gpt-3.5-turbo-0125 # target model API to attack
+  # claude_batch_provider: anthropic # for claude models only: gcp or anthropic
+
+attack_sets:
+  - name: "prefix"
+    attack_sequence:
+      - Attack.PREFIX
+
+defense_sets:
+  - name: "placeholder"
+    defense_sequence_before_llm: []
+    target_llm: LLM.PLACEHOLDER # does nothing. This will not be used in the experiment (in the code, target_llm will be replaced by None)
+    defense_sequence_after_llm: []
+
+evaluation_set:
+  name: "oss-jb-judge_jbb"
+  evaluator_sequence:
+    - Evaluator.OSS_JB_JUDGE_120B
+  dataset: Dataset.JBB_BEHAVIOURS

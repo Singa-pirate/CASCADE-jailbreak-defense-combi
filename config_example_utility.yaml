@@ -1,0 +1,25 @@
+exp_name: "date-number-title"
+interactive: False
+exp_type: Experiment.UTILITY
+optional_configs:
+  # For details on these options, see exp/classes/utility.py
+  generate_only: True
+  evaluate_only: False
+  test_input_filter_only: False
+  test_output_filter_only: False
+  # this is required when test_input_filter_only or test_output_filter_only is True
+  # reference_outputs_filename: CHATGPT_4o.json
+  # this is for easy evaluation of combined defense outputs; check common/helpers/combine_defense_outputs.py for details
+  # subfolder_name: combined_2
+
+defense_sets:
+  - name: "vicuna-7b-two-guards"
+    defense_sequence_before_llm:
+      - Defense.PROMPT_GUARD
+    target_llm:
+      label: LLM.VICUNA_7B
+      optional_configs:
+        temperature: 0
+        seed: 42
+    defense_sequence_after_llm:
+      - Defense.LLAMA_GUARD

@@ -1,0 +1,36 @@
+# This demonstrates setting up nodes with optional configs, useful in "emsemble" style attacks
+# Refer to verify_config.py and build_graph.py for required formats and their effects
+# Refer to attacks/offline/multi_jail.py and defenses/util_multijail_translate_back.py for param details
+exp_name: "date-number-title"
+interactive: False
+exp_type: Experiment.LINEAR
+
+attack_sets:
+  - name: "MultiJail_zh-CN"
+    attack_sequence:
+      - label: Attack.MULTI_JAIL
+        optional_configs:
+          enable_live_translation: True
+          target_lang: "zh-CN"
+  - name: "MultiJail_ko"
+    attack_sequence:
+      - label: Attack.MULTI_JAIL
+        optional_configs:
+          enable_live_translation: True
+          target_lang: "ko"
+
+defense_sets:
+  - name: "llama3_8b"
+    defense_sequence_before_llm: []
+    target_llm:
+      label: LLM.LLAMA3_8B
+      optional_configs:
+        enable_safety_system_prompt: False
+    defense_sequence_after_llm:
+      - Defense.MULTI_JAIL_TRANSLATE_BACK
+
+evaluation_set:
+  name: "oss-jb-judge_jbb"
+  evaluator_sequence:
+    - Evaluator.OSS_JB_JUDGE_120B
+  dataset: Dataset.JBB_BEHAVIOURS

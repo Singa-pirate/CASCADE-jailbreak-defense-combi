@@ -1,0 +1,16 @@
+exp_name: "date-number-title"
+interactive: True
+exp_type: Experiment.LINEAR
+
+attack_sets:
+  - name: "nothing"
+    attack_sequence: []
+
+defense_sets:
+  - name: "chatgpt-3.5-turbo-only"
+    defense_sequence_before_llm: []
+    target_llm:
+      label: LLM.OSS_120B
+      optional_configs:
+        seed: 42
+    defense_sequence_after_llm: []
