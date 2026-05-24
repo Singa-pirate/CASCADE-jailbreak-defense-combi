@@ -5,18 +5,18 @@ interactive: False # whether to run in input-output mode (for trial and debuggin
 exp_type: Experiment.LINEAR # used to determine experiment logic / topology
 optional_configs:
   experiment_repetitions: 5 # number of times to repeat experiment for each exp graph setup
-  optimise_memory: False # whether to clean up memory as much as possible, only use for large models
-
-  # For ASR
 
   # For TAP
   branching_factor: 4 # at each iteration, number of new prompts to generate from each seed prompt
   width: 10 # number of total candidates to keep at the end of each iteration
   depth: 10 # maximum number of iterations to run, before giving up
   keep_last_n_rounds: 3 # number of rounds of conversation history that the attacker LLM can access
+  # also check other specific experiment setup configs
 
   # For utility experiments
-  generate_and_evaluate: False # False: only generate outputs and save data; True: also evaluate using vLLM endpoint
+  generate_only: True
+  evaluate_only: False
+  # check utility experiment setup configs
 
 ### Attack sets: each set configures an attack graph
 attack_sets:
