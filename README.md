@@ -1,3 +1,14 @@
+## Run ASR Experiment
+
+To run ASR experiment:
+
+1. View and identify the dataset, attacks, defenses, target LLMs, evaluators needed (in `/data` and `nodes`)
+
+2. Understand and choose the relevant experiment type (in `/exp`)
+
+3. Edit configuration yamls and shell scripts accordingly and run the experiment
+
+
 ## Run Utility Experiment
 
 To run utility experiment using AlpacaEval:
