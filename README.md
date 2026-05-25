@@ -1,8 +1,10 @@
+***We plan to release the code under MIT license after paper acceptance.***
+
 ## Run ASR Experiment
 
 To run ASR experiment:
 
-1. View and identify the dataset, attacks, defenses, target LLMs, evaluators needed (in `/data` and `nodes`)
+1. View and identify the dataset, attacks, defenses, target LLMs, evaluators needed (in `/data` and `/nodes`)
 
 2. Understand and choose the relevant experiment type (in `/exp`)
 
