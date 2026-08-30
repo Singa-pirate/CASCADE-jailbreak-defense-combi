@@ -1,5 +1,3 @@
-***We plan to release the code under MIT license after paper acceptance.***
-
 ## Run ASR Experiment
 
 To run ASR experiment:
